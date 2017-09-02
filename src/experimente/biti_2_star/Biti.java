@@ -1,38 +1,35 @@
-package experimente.biti_3_star;
+package experimente.biti_2_star;
+
+import java.util.stream.IntStream;
 
 import static java.lang.System.out;
 
 
 public class Biti {
 
-    private static int n = 4;
+    private static int n = 12;
     private static int min_len = (int) Math.pow(2, n) + n - 1;
-//    private static Integer[] sol = new Integer[100];
     private static String sol = "";
 
     private static void print() {
+        System.out.println(min_len);
         System.out.print(sol);
         out.println();
     }
 
     private static boolean isValid(int i, int step) {
-        //check for a valid step
-        if (step <= n - 1) return true;
-        //get the last number
         String lastNumber = sol.substring(step - n + 1, step) + i;
-        //sol is valid if it does not contain last number
         return !sol.contains(lastNumber);
     }
 
     private static boolean back(int step) {
-
-        if (step == min_len - 1) {
+        if (step == min_len) {
             print();
             return true;
         }
         for (int i = 0; i < 2; ++i) {
             if (isValid(i, step)) {
-                sol = sol + i;
+                sol += i;
                 if (back(step + 1)) {
                     return true;
                 }
@@ -43,7 +40,8 @@ public class Biti {
     }
 
     public static void main(String[] args) {
-        back(0);
+        IntStream.rangeClosed(1, n).forEach(i -> sol += "0");
+        back(n);
     }
 
 }
