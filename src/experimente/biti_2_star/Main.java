@@ -15,7 +15,7 @@ public class Main {
 
 
     private static String deBrujinSequenceGenerator(int n) {
-        if (n == 0) {
+        if (n == 1) {
             return "01";
         }
 
